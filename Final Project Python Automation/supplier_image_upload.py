@@ -3,7 +3,10 @@
 import requests
 import sys, os
 
-
+url = 'http://localhost/upload/'
+#get home path
+folder = os.path.expanduser("~") + '/supplier-data/images/'
+#pass folder name from command line
 def upload_images(folder):
     for img in os.listdir(folder):
         if img.endswith('.jpeg'):
@@ -14,9 +17,5 @@ def upload_images(folder):
             except:
                 print('Error')
 
-if __name__ ==' __main__':
-    url = 'http://localhost/upload/'
-    #get home path
-    home = os.path.expanduser("~")
-    #pass folder name from command line
-    upload_images(home + '/supplier-data/images/')
+
+upload_images(folder)

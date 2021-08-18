@@ -5,7 +5,7 @@ import os
 import smtplib
 
 def generate_email(sender, recipient, subject, body, attachment):
-    # create email 
+    # create email
     message = EmailMessage()
     message['From'] = sender
     message['To'] = recipient
@@ -16,9 +16,13 @@ def generate_email(sender, recipient, subject, body, attachment):
     with open(attachment, 'rb') as attachment_opened:
         message.add_attachment(attachment_opened.read(), maintype = mime_type, subtype = mime_subtype, filename = os.path.basename(attachment))
 
-
-
-
+def generate_email_error(sender, recipient, subject, body):
+    # create email
+    message = EmailMessage()
+    message['From'] = sender
+    message['To'] = recipient
+    message['Subject'] = subject
+    message.set_content(body)    
 
 
 def send_email():

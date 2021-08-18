@@ -1,23 +1,21 @@
 #!/usr/bin/env python3
 
-import os, sys
+import os
+import sys
 from PIL import Image
 
-def convert_images(folder):
-        for img in os.listdir(folder):
+# specify the path
+folder = os.path.expanduser('~') + '/supplier-data/images/'
 
-            try:
-                new_im = Image.open(folder + img).resize((600,400)).convert('RGB')
-                filename = img.split('.')[0]
-                new_im.save(folder + filename,'jpeg')
-                im.close()
-                print('OK')
-            except:
-                print('Error')
+# open an image with PIL, resize, convert and save.
+for img in os.listdir(folder):
 
-
-if __name__ ==' __main__':
-    #get home path
-    home = os.path.expanduser("~")
-    #pass folder name from command line
-    convert_images(home + '/supplier-data/images/')
+    try:
+        new_im = Image.open(folder + img).resize((600,400)).convert('RGB')
+        filename = img.split('.')[0] + '.jpeg'
+        new_im.save(folder + filename,'JPEG')
+        new_im.close()
+        print('OK')
+    except:
+        print('Error') # Not an image
+print('Upload Completed')
