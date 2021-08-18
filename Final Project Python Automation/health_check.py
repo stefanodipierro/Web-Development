@@ -29,7 +29,7 @@ body = "Please check your system and resolve the issue as soon as possible."
 
 def health_check(cpu, ram, hostname):
     if cpu > 80:
-        subject = 'CPU over 80'
+        subject = 'Error - CPU usage is over 80%'
         message = emails.generate_email_error(sender, recipient, subject, body)
         emails.send_email(message)
     if free > twenty_per_cent:
@@ -45,3 +45,5 @@ def health_check(cpu, ram, hostname):
         subject = 'local host is not 127.0.0.1'
         message = emails.generate_email_error(sender, recipient, subject, body)
         emails.send_email(message)
+
+health_check(cpu, ram, hostname)
