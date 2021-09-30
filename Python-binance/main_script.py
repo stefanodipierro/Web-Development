@@ -36,7 +36,7 @@ bsm.start()
 
 # function to convert milliseconds string into datetime
 
-def convert_todatetime (column):
+def convert_todatetime(column):
     return column = datetime.fromtimestamp(int(column)/1000)
 
 
@@ -64,8 +64,8 @@ def get_historical(pairsList, interval, startDate, endDate):
 
         klines = client.get_historical_klines(pair, interval, startDate, endDate)
         globals()[f"df{pair}"] = pd.DataFrame(klines, columns = columnsList)
-        globals()[f"df{pair}"]
         globals()[f"df{pair}"].set_index('close_time', drop = True, inplace = True)
+        globals()[f"df{pair}"].index.apply(convert_todatetime)
 
 
         #figure out to set index to close time and convert to real date with datetime.fromtimestamp(int("1518308894652")/1000)
